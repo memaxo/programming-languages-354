@@ -1,0 +1,25 @@
+level 5: 
+rw [add_zero]
+rw [add_zero]
+rfl
+
+level 6:
+rw [add_zero c]
+rw [add_zero b]
+rfl
+
+level 7:
+rw [succ_eq_add_one]
+rfl
+
+level 8:
+rw [two_eq_succ_one]
+rw [add_succ]
+rw [one_eq_succ_zero]
+rw [add_succ]
+rw [add_zero]
+rw [four_eq_succ_three]
+rw [three_eq_succ_two]
+rw [two_eq_succ_one]
+rw [one_eq_succ_zero]
+rfl

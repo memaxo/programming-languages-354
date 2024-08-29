@@ -1,0 +1,171 @@
+\documentclass{article}
+
+\usepackage{tikz} 
+\usetikzlibrary{automata, positioning, arrows} 
+
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage{parskip}
+\usepackage{hyperref}
+  \hypersetup{
+    colorlinks = true,
+    urlcolor = blue,       % color of external links using \href
+    linkcolor= blue,       % color of internal links 
+    citecolor= blue,       % color of links to bibliography
+    filecolor= blue,        % color of file links
+    }
+    
+\usepackage{listings}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=haskell,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\newtheoremstyle{theorem}
+  {\topsep}   % ABOVESPACE
+  {\topsep}   % BELOWSPACE
+  {\itshape\/}  % BODYFONT
+  {0pt}       % INDENT (empty value is the same as 0pt)
+  {\bfseries} % HEADFONT
+  {.}         % HEADPUNCT
+  {5pt plus 1pt minus 1pt} % HEADSPACE
+  {}          % CUSTOM-HEAD-SPEC
+\theoremstyle{theorem} 
+   \newtheorem{theorem}{Theorem}[section]
+   \newtheorem{corollary}[theorem]{Corollary}
+   \newtheorem{lemma}[theorem]{Lemma}
+   \newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+   \newtheorem{definition}[theorem]{Definition}
+   \newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}    
+  \newtheorem{remark}[theorem]{Remark}
+
+\title{CPSC-354 Report}
+\author{First Name Last Name  \\ Chapman University}
+
+\date{\today} 
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This report chronicles the learning journey over the semester in CPSC-354. The course encompassed a diverse set of topics including formal systems, Lean theorem proving, and other key areas in computer science and logic. Throughout the semester, I engaged with a range of concepts, starting with an introduction to formal systems and basic Lean proofs, and gradually progressing to more complex topics. The report documents my notes, homework solutions, and critical reflections on the content covered each week. The goal is to provide a comprehensive overview of my understanding and development in these subjects.
+\end{abstract}
+
+\setcounter{tocdepth}{3}
+\tableofcontents
+
+\section{Introduction}\label{intro}
+
+This report serves as a comprehensive documentation of my learning and development throughout the CPSC-354 course. The content spans from the basics of formal systems and Lean theorem proving to more advanced topics covered later in the semester. The report is structured week by week, with detailed notes, homework solutions, and reflections for each period. The aim is to capture both the technical and conceptual growth experienced over the course of the semester.
+
+\section{Week by Week}\label{homework}
+
+\subsection{Week 1}
+
+\subsubsection*{Notes}
+
+In Week 1, I explored the foundational concepts of formal systems through the MU-puzzle and began working with Lean proof tactics. The MU-puzzle introduced me to the idea of rule-based transformations within a formal system, emphasizing the importance of adhering strictly to the rules—known as the "Requirement of Formality." This concept was mirrored in my Lean exercises, where I learned to apply specific proof tactics to simplify and verify logical statements.
+
+\subsubsection*{Homework}
+
+The Lean tutorial levels 5 through 8 provided practical exercises that reinforced the theoretical concepts from the MU-puzzle. Below is a summary of the steps and lessons learned:
+
+\subsubsection*{Level 5}
+In Level 5, I learned how to handle simple arithmetic involving the addition of zero. The steps were as follows:
+\begin{verbatim}
+rw [add_zero]
+rw [add_zero]
+rfl
+\end{verbatim}
+This taught me the importance of simplifying expressions step by step and ensuring that both sides of an equation are identical before applying \texttt{rfl}.
+
+\subsubsection*{Level 6}
+Level 6 focused on precision rewriting. I applied the following steps:
+\begin{verbatim}
+rw [add_zero c]
+rw [add_zero b]
+rfl
+\end{verbatim}
+This exercise highlighted the need for targeted rewriting to simplify specific parts of an expression while maintaining overall accuracy.
+
+\subsubsection*{Level 7}
+In Level 7, I worked with the successor function and addition:
+\begin{verbatim}
+rw [succ_eq_add_one]
+rfl
+\end{verbatim}
+This reinforced the relationship between successor functions and addition, showing how to simplify such expressions in Lean.
+
+\subsubsection*{Level 8}
+Level 8 was the most complex, requiring multiple rewrites to simplify nested successor functions:
+\begin{verbatim}
+rw [two_eq_succ_one]
+rw [add_succ]
+rw [one_eq_succ_zero]
+rw [add_succ]
+rw [add_zero]
+rw [four_eq_succ_three]
+rw [three_eq_succ_two]
+rw [two_eq_succ_one]
+rw [one_eq_succ_zero]
+rfl
+\end{verbatim}
+This level emphasized the importance of meticulous, step-by-step simplifications, especially when dealing with Peano arithmetic.
+
+\subsubsection*{Comments and Questions}
+
+A critical question that arose from this week's work was: How do the abstract rules in formal systems like the MU-puzzle translate into practical applications in software engineering? This question bridges the gap between theoretical understanding and real-world application, prompting further exploration of how these concepts can be utilized beyond academic exercises.
+
+\subsection{Week 2}
+
+\ldots
+
+\section{Lessons from the Assignments}
+
+Throughout the semester, I encountered various challenges and learning opportunities that contributed to my understanding of formal systems, logic, and Lean theorem proving. Here are the key lessons:
+
+\subsection{Precision and Structure in Formal Systems}
+
+The early weeks of the course, particularly Week 1, emphasized the precision required when working within formal systems. The MU-puzzle illustrated how even simple rules can lead to complex problem-solving scenarios, mirroring the need for exactness in Lean proofs. As I progressed through the levels in Lean, this precision became even more critical, particularly when dealing with nested functions and arithmetic expressions.
+
+\subsection{The Art of Rewriting in Lean}
+
+Rewriting is a fundamental tactic in Lean, as demonstrated in Levels 5-8. The ability to identify which parts of an expression to rewrite—and in what order—can make the difference between a successful proof and a failed one. This process is not just mechanical; it involves a deep understanding of the underlying logical structure and the relationships between different components of an expression.
+
+\subsection{Connecting Theory with Practice}
+
+The course consistently challenged me to connect theoretical concepts, like those from the MU-puzzle, with practical applications in Lean. This connection was particularly evident in the more complex proofs, where abstract ideas about formal systems were directly applicable to solving logical problems. Understanding this connection has been one of the most valuable aspects of the course.
+
+\section{Conclusion}\label{conclusion}
+
+This course provided a rigorous exploration of formal systems and Lean theorem proving, both of which are foundational to understanding logic and formal reasoning in computer science. The structured approach to rule-based logic, combined with the practical experience in Lean, has significantly enhanced my problem-solving skills. The most interesting aspect of the course was learning how abstract logical systems, like the MU-puzzle, have practical implications in areas like software engineering and automated proof verification. Moving forward, I would suggest incorporating more real-world examples to further bridge the gap between theory and practice, making the content even more relevant to students pursuing careers in technology.
+
+\begin{thebibliography}{99}
+\bibitem[BLA]{bla} Author, \href{https://en.wikipedia.org/wiki/LaTeX}{Title}, Publisher, Year.
+\end{thebibliography}
+
+\end{document}
