@@ -82,9 +82,7 @@ This report chronicles the learning journey over the semester in CPSC-354. The c
 
 This report serves as a comprehensive documentation of my learning and development throughout the CPSC-354 course. The content spans from the basics of formal systems and Lean theorem proving to more advanced topics covered later in the semester. The report is structured week by week, with detailed notes, homework solutions, and reflections for each period. The aim is to capture both the technical and conceptual growth experienced over the course of the semester.
 
-\section{Week by Week}\label{homework}
-
-\subsection{Week 1}
+\section{Week 1}
 
 \subsubsection*{Notes}
 
@@ -144,7 +142,7 @@ How do the abstract rules in formal systems like the MU-puzzle translate into pr
 
 \ldots
 
-\section{Lessons from the Assignments}
+\subsection{Lessons from the Assignments}
 
 Throughout the semester, I encountered various challenges and learning opportunities that contributed to my understanding of formal systems, logic, and Lean theorem proving. Here are the key lessons:
 
@@ -156,9 +154,101 @@ The early weeks of the course, particularly Week 1, emphasized the precision req
 
 Rewriting is a fundamental tactic in Lean, as demonstrated in Levels 5-8. The ability to identify which parts of an expression to rewrite—and in what order—can make the difference between a successful proof and a failed one. This process is not just mechanical; it involves a deep understanding of the underlying logical structure and the relationships between different components of an expression.
 
-\section{Conclusion}\label{conclusion}
+\subsection{Conclusion}\label{conclusion}
 
 This course provided a rigorous exploration of formal systems and Lean theorem proving, both of which are foundational to understanding logic and formal reasoning in computer science.
+
+\section{Week 2}
+
+\subsubsection{Lecture Content}
+
+In Week 2, we delved deeper into the Natural Number Game (NNG) and focused on the Addition World. The lectures covered the fundamental properties of addition for natural numbers and introduced us to more advanced proof techniques in Lean.
+
+Key topics included:
+\begin{itemize}
+    \item Commutativity and associativity of addition
+    \item The role of zero in addition
+    \item Inductive proofs for properties of addition
+    \item Tactics for rewriting and simplifying expressions in Lean
+\end{itemize}
+
+\subsubsection{NNG Addition World Solutions}
+
+\paragraph{Levels 1-3: Lean Proofs}
+
+\begin{lstlisting}
+-- Level 1
+rw [add_zero]
+
+-- Level 2
+rw [add_succ]
+rw [succ_add]
+
+-- Level 3
+rw [succ_add]
+rw [add_succ]
+\end{lstlisting}
+
+\paragraph{Level 4: Mathematical Proof}
+
+\textbf{Theorem:} For all natural numbers a and b, a + succ(b) = succ(a + b)
+
+\textbf{Proof:}
+\begin{align*}
+a + \text{succ}(b) &= \text{succ}(a + b) \quad [\text{by definition of +}]
+\end{align*}
+
+\paragraph{Level 5: Mathematical Proof}
+
+\textbf{Theorem:} For all natural numbers n, 0 + n = n
+
+\textbf{Proof:} By induction on n.
+
+Base case: n = 0
+\begin{align*}
+0 + 0 &= 0 \quad [\text{by definition of +}]
+\end{align*}
+
+Inductive step: Assume 0 + k = k for some k. We need to prove 0 + succ(k) = succ(k).
+\begin{align*}
+0 + \text{succ}(k) &= \text{succ}(0 + k) \quad [\text{by definition of +}] \\
+&= \text{succ}(k) \quad [\text{by inductive hypothesis}]
+\end{align*}
+
+Therefore, by mathematical induction, 0 + n = n for all natural numbers n.
+
+\subsubsection{Relationship between Lean Proof and Mathematical Proof}
+
+Let's examine the relationship between the Lean proof and the mathematical proof for Level 5:
+
+Lean proof:
+\begin{lstlisting}[language=Lean]
+induction n with d hd
+· rw [add_zero]
+  rfl
+· rw [add_succ]
+  rw [hd]
+  rfl
+\end{lstlisting}
+
+The Lean proof closely mirrors the structure of the mathematical induction proof:
+
+1. \texttt{induction n with d hd} corresponds to setting up the induction on \(n\), with \(d\) representing the inductive variable and \texttt{hd} the inductive hypothesis.
+
+2. The base case \texttt{rw [add\_zero]} followed by \texttt{rfl} reflects the mathematical step \(0 + 0 = 0\).
+
+3. In the inductive step, \texttt{rw [add\_succ]} corresponds to expanding \(0 + \text{succ}(d)\) to \(\text{succ}(0 + d)\).
+
+4. \texttt{rw [hd]} applies the inductive hypothesis, similar to using \(0 + k = k\) in the mathematical proof.
+
+5. Finally, \texttt{rfl} completes the proof by asserting that the equality is now trivial, just as we conclude in the mathematical proof.
+
+This comparison demonstrates how the rigorous structure of mathematical induction is encoded in Lean's tactics, providing a formal, machine-checkable version of the traditional proof.
+
+\subsubsection{Interesting Question}
+
+How does the use of induction in proving properties of natural numbers relate to recursive definitions in programming languages? Can we draw parallels between mathematical induction and recursive algorithms?
+
 
 \begin{thebibliography}{99}
 \bibitem[BLA]{bla} Author, \href{https://en.wikipedia.org/wiki/LaTeX}{Title}, Publisher, Year.
