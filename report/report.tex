@@ -249,6 +249,135 @@ This comparison demonstrates how the rigorous structure of mathematical inductio
 
 How does the use of induction in proving properties of natural numbers relate to recursive definitions in programming languages? Can we draw parallels between mathematical induction and recursive algorithms?
 
+\section{Week 3}
+\subsection{Parsing and Context-Free Grammars}
+\subsubsection{Lecture Content}
+In Week 3, we explored the concepts of parsing and context-free grammars (CFGs). The lectures covered the following key topics:
+\begin{itemize}
+\item Translating concrete syntax into abstract syntax
+\item The role of parsing in programming languages
+\item Defining the concrete syntax of a calculator using a CFG
+\item Writing a CFG using the Lark parser generator
+\item Generating a parser in Python to translate concrete arithmetic expressions to abstract ones
+\end{itemize}
+\subsubsection{Homework Solutions}
+\paragraph{Derivation Trees}
+Using the provided context-free grammar, here are the derivation trees for the given strings:
+2+1:
+\begin{verbatim}
+Exp
+|
+Exp '+' Exp1
+|       |
+Exp1     Exp2
+|       |
+Exp2   Integer
+|       |
+Integer    '1'
+|
+'2'
+\end{verbatim}
+1+23:
+\begin{verbatim}
+Exp
+|
+Exp '+' Exp1
+|       |
+Exp1   Exp1 '' Exp2
+|       |       |
+Exp2    Exp2   Integer
+|       |       |
+Integer  Integer   '3'
+|       |
+'1'    '2'
+\end{verbatim}
+1+(23):
+\begin{verbatim}
+Exp
+|
+Exp '+' Exp1
+|       |
+Exp1    Exp2
+|       |
+Exp2   '(' Exp ')'
+|       |   |
+Integer    Exp1 '' Exp2
+|       |       |
+'1'    Exp2   Integer
+|       |
+Integer    '3'
+|
+'2'
+\end{verbatim}
+(1+2)3:
+\begin{verbatim}
+Exp
+|
+Exp1 '' Exp2
+|        |
+Exp2    Integer
+|        |
+'(' Exp ')'  '3'
+|
+Exp '+' Exp1
+|       |
+Exp1     Exp2
+|       |
+Exp2   Integer
+|       |
+Integer    '2'
+|
+'1'
+\end{verbatim}
+1+23+45+6:
+\begin{verbatim}
+Exp
+|
+Exp '+' Exp1
+|       |
+Exp '+' Exp1 Exp2
+|       |     |
+Exp1 Exp1 '' Exp2 Integer
+|     |       |     |
+Exp2  Exp2   Integer '6'
+|     |       |
+Integer Integer   '5'
+|     |
+'1'  '2' '' Exp2
+|
+Exp2
+|
+Integer
+|
+'3' '+' Exp1
+|
+Exp1 '*' Exp2
+|       |
+Exp2   Integer
+|       |
+Integer    '4'
+|
+'3'
+\end{verbatim}
+\paragraph{Similarities and Differences between CFG and Algebraic Data Type}
+The CFG and algebraic data type for expressions share some similarities:
+\begin{itemize}
+\item Both define the structure of valid expressions
+\item Both capture the precedence of operations (e.g., multiplication before addition)
+\item Both can be used to generate or recognize valid expressions
+\end{itemize}
+However, there are also some key differences:
+\begin{itemize}
+\item The CFG is used for parsing, i.e., translating concrete syntax (strings) into an abstract syntax tree (AST), while the algebraic data type directly defines the structure of the AST
+\item The CFG is a set of production rules, while the algebraic data type is a type definition with constructors
+\item The CFG can include redundant rules or ambiguity, while the algebraic data type is more precise and concise
+\end{itemize}
+\subsubsection{Interesting Questions}
+\begin{itemize}
+\item How can we extend the calculator CFG to handle more advanced features like variables, functions, or control structures?
+\item What are some real-world applications of parsing beyond programming languages (e.g., natural language processing, data serialization formats)?
+\item How do more advanced parsing techniques like parser combinators or parsing expression grammars compare to traditional CFG-based parsing?
+\end{itemize}
 
 \begin{thebibliography}{99}
 \bibitem[BLA]{bla} Author, \href{https://en.wikipedia.org/wiki/LaTeX}{Title}, Publisher, Year.
