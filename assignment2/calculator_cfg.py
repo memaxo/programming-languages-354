@@ -19,17 +19,55 @@ class CalculatorTransformer(Transformer):
     def multiply(self, args):
         return args[0] * args[1]
 
+    def divide(self, args):
+        if args[1] == 0:
+            raise ValueError("Division by zero")
+        return args[0] / args[1]
+
     def power(self, args):
         return args[0] ** args[1]
 
     def negate(self, args):
         return -args[0]
 
-    def logarithm(self, args):
-        return math.log(args[0], args[1])
-
     def number(self, args):
         return float(args[0])
+
+    def scientific(self, args):
+        return float(args[0])
+
+    def logarithm(self, args):
+        if args[0] <= 0 or args[1] <= 0 or args[1] == 1:
+            raise ValueError("Invalid logarithm arguments")
+        return math.log(args[0], args[1])
+
+    def natural_log(self, args):
+        if args[0] <= 0:
+            raise ValueError("Invalid argument for natural logarithm")
+        return math.log(args[0])
+
+    def sine(self, args):
+        return math.sin(args[0])
+
+    def cosine(self, args):
+        return math.cos(args[0])
+
+    def tangent(self, args):
+        return math.tan(args[0])
+
+    def square_root(self, args):
+        if args[0] < 0:
+            raise ValueError("Cannot calculate square root of a negative number")
+        return math.sqrt(args[0])
+
+    def absolute_value(self, args):
+        return abs(args[0])
+
+    def pi(self, args):
+        return math.pi
+
+    def e(self, args):
+        return math.e
 
 def calculate(expression):
     try:

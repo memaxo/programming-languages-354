@@ -22,19 +22,13 @@
      | function
      | constant
 
-function: log
-        | trig
-        | other_func
-
-log: "log" atom "base" atom  -> logarithm
-   | "ln" "(" exp ")"        -> natural_log
-
-trig: "sin" "(" exp ")"  -> sine
-    | "cos" "(" exp ")"  -> cosine
-    | "tan" "(" exp ")"  -> tangent
-
-other_func: "sqrt" "(" exp ")"  -> square_root
-          | "abs" "(" exp ")"   -> absolute_value
+function: "log" atom "base" atom  -> logarithm
+        | "ln" "(" exp ")"        -> natural_log
+        | "sin" "(" exp ")"       -> sine
+        | "cos" "(" exp ")"       -> cosine
+        | "tan" "(" exp ")"       -> tangent
+        | "sqrt" "(" exp ")"      -> square_root
+        | "abs" "(" exp ")"       -> absolute_value
 
 constant: "pi"  -> pi
         | "e"   -> e
